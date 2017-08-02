@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div>
+        官网demo： http://www.layui.com/laypage/?page=8
+    </div>  
+
+    <div class="divLaypage"></div>
+    <script src="jquery-2.2.0.js"></script>
+    <script src="laypage/laypage.js"></script>
+    <script type="text/javascript">
+
+        function loadDoctorList(curr) {
+            curr = curr || 1;
+            var MaxResultCount = 40;
+            var SkipCount = (curr - 1) * MaxResultCount;
+            var jsonObj = { "SkipCount": SkipCount, "MaxResultCount": MaxResultCount };
+            $.ajax({
+                url: "json.json",
+                data: JSON.stringify(jsonObj),
+                success: function (sData) {
+                    laypage({
+                        cont: $('.divLaypage'), //容器。值支持id名、原生dom对象，jquery对象,
+                        pages: Math.ceil(sData.totalCount / MaxResultCount), //总页数
+                        skip: true, //是否开启跳页
+                        skin: '#9E9E9E',
+                        groups: 5, //连续显示分页数
+                        curr: curr, //当前页
+                        jump: function (e, first) {//触发分页后的回调
+                            if (!first) {//点击跳页触发函数自身(一定要加此判断，否则初始时会无限刷新)
+                                loadDoctorList(e.curr);
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+        $(function () {
+            loadDoctorList();
+        });
+    </script>
+</body>
+</html>

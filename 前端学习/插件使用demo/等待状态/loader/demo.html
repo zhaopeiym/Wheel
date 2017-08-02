@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <input type="button" value="提交" class="btnSubmit" />
+    <link href="loader/css/loader.css" rel="stylesheet" />
+    <script src="jquery-2.2.0.js"></script>
+    <script src="loader/js/loader.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".btnSubmit").click(function () {
+                loader.loading({
+                    delay: 500 //最少显示时间
+                });//显示 加载状态
+
+                loader.close();//关闭 加载状态
+            });
+        })
+    </script>
+</body>
+</html>
