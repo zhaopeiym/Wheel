@@ -1,0 +1,39 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="hiSwitch/jquery.hiSwitch.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="content">
+        <div class="hiSwitch hiSwitch1" data-key="true">
+            <span></span>
+        </div>
+        <div class="hiSwitch hiSwitch2" data-key="false">
+            <span></span>
+        </div>
+        <div class="hiSwitch hiSwitch3">
+            <span></span>
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="hiSwitch/jquery.hiSwitch.js"></script>
+
+    <button type="button" onclick="but1()">设置</button>
+    <button type="button" onclick="but2()">获取</button>
+    <script type="text/javascript">
+        $(function () {
+            $(".content .hiSwitch").initHiSetSwitch();//初始化
+        })
+        function but1() {
+            var isSwitch = $(".hiSwitch1").getHiSwitch();
+            $(".hiSwitch1").setHiSwitch(!isSwitch);
+        };
+        function but2() {
+            alert("hiSwitch1:" + $(".hiSwitch1").getHiSwitch());
+        };
+    </script>
+</body>
+</html>
