@@ -26,6 +26,10 @@
     <script type="text/javascript">
         $(function () {
             $(".content .hiSwitch").initHiSetSwitch();//初始化
+            //绑定事件
+            $('.hiSwitch').on("hiSwitchChanged", function () {
+                alert($(this).prop("class") + $(".hiSwitch1").getHiSwitch());
+            });
         })
         function but1() {
             var isSwitch = $(".hiSwitch1").getHiSwitch();
