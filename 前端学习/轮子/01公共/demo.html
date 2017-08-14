@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="jquery.common.js"></script>
+    <script type="text/javascript">
+        //获取url 参数
+        console.log($.queryString("t"));
+        //设置url 参数
+        console.log($.parameter("t", "QQ"));
+        //改变url
+        $.pushState($.parameter("t", "QQ"));
+        //补全小数点
+        console.log($.formatNumber(12, "3"));
+        //计数执行
+        var deferCall = $.deferCall();
+        deferCall.callBack(function () {
+            console.log("执行啊！！！！");
+        });
+        deferCall.number = 3; 
+        deferCall.execute(); 
+        console.log("执行了吗1");
+        deferCall.execute(); 
+        console.log("执行了吗2");
+        deferCall.execute(); 
+        console.log("执行了吗3");
+        deferCall.execute();
+        console.log("执行了吗4");
+        //单例转换
+        function cla() { };
+        var c1 = new cla();//这里得到的是一个实例（不是单例）
+        var c2 = new cla();
+        console.log(c1 === c2);//false
+        var c3 = $.getSingle(cla);
+        var c4 = c3();//这里得到的是一个实例（且单例）
+        var c5 = c3();
+        console.log(c4 === c5);//true
+
+
+
+
+
+        ////使用示例（主要解决多个异步回调问题）
+        //var a = function (aa) {
+        //    console.log(aa);
+        //    arguments.callee.nameaa = "bbb";
+        //    arguments.callee.executeNext(aa);
+        //}
+        //var b = function (bb) {
+        //    console.log(bb);
+        //    arguments.callee.nameaa = "ccc";
+        //    console.log(this.nameaa);
+        //    arguments.callee.executeNext(bb);
+        //}
+        //var c = function (cc) {
+        //    console.log(cc);
+        //    arguments.callee.nameaa = "ddd";
+        //    console.log(this.nameaa);
+        //    arguments.callee.executeNext(cc);
+        //}
+        //a.setNext(b).setNext(c);
+
+        //a("111"); 
+
+    </script>
+</body>
+</html>
