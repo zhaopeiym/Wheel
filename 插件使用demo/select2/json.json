@@ -1,0 +1,46 @@
+﻿{
+  "success": true,
+  "result": {
+    "totalCount": 3,
+    "items": [
+      {
+        "id": 1158408,
+        "name": "VP002",
+        "code": null,
+        "versions": null,
+        "serialNumber": null,
+        "number": 0,
+        "termOfService": null,
+        "extendOfService": null,
+        "isInWarranty": false,
+        "assetId": 877858
+      },
+      {
+        "id": 1158406,
+        "name": "VP004",
+        "code": "无",
+        "versions": "无",
+        "serialNumber": "无",
+        "number": 0,
+        "termOfService": null,
+        "extendOfService": null,
+        "isInWarranty": false,
+        "assetId": 877858
+      },
+      {
+        "id": 1155212,
+        "name": "请问",
+        "code": "YU09",
+        "versions": "v1.0",
+        "serialNumber": "123123123123",
+        "number": 2,
+        "termOfService": "2017-08-23T00:00:00",
+        "extendOfService": "2017-08-25T00:00:00",
+        "isInWarranty": true,
+        "assetId": 877858
+      }
+    ]
+  },
+  "error": null,
+  "unAuthorizedRequest": false
+}

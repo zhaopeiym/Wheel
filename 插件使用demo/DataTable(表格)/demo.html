@@ -3,6 +3,20 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
+    <style type="text/css">
+        table {
+            border-collapse: collapse !important;
+            border-spacing: 0 !important;
+        }
+
+            table tr {
+                border: 0px !important;
+            }
+
+            table td, table th {
+                border: 1px solid #808080 !important;
+            }
+    </style>
 </head>
 <body>
     <table id="tableContainer">
@@ -20,7 +34,8 @@
             destroy: true,
             serverSide: true,//服务器模式，亦可加载多条数据在客户端分页
             info: true,      //显示信息
-            paging: true,    //显示分页   
+            paging: true,    //显示分页
+            //"sPaginationType": "input", //sPaginationType: 分页样式，支持四种内置方式，simple、simple_numbers、full和 full_numbers, 默认使用 simple_numbers
             language: {
                 "sProcessing": "处理中...",
                 "sLengthMenu": "显示 _MENU_ 项结果",
@@ -56,18 +71,18 @@
 
         $(function () {
             var columnsData = [
-                { data: "name", title: "专家姓名", width: "10%" },
+                { data: "name", title: "专家姓名", width: "10%" },  // width 宽度比例、orderable 排序、sClass 列class、
                 { data: "title", title: "职称", width: "10%" },
                 { data: "specialty", title: "擅长" },
                 { data: "id", title: "操作", width: "10%" },
             ];
 
-            $('#tableContainer').DataTable($.dataTableSetting({                
+            $('#tableContainer').DataTable($.dataTableSetting({
                 ajax: function (data, callback, settings) {
                     var josnData = {};
                     $.ajax({
                         url: "json.json",
-                        data: josnData, 
+                        data: josnData,
                         success: function (sData) {
                             var obj = {}
                             obj.draw = data.draw;
@@ -75,7 +90,13 @@
                             obj.recordsFiltered = sData.totalCount;
                             obj.data = sData.items;
                             callback(obj);
-                        },                       
+                        },
+                    });
+                },
+                //自动添加序列
+                fnDrawCallback: function () {
+                    this.api().column(0).nodes().each(function (cell, i) {
+                        $(cell).append(i + 1);
                     });
                 },
                 columns: columnsData,

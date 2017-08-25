@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <input type="hidden" id="asset_nameOrVersion" />
+    <select class="select1" style="width:100px"></select>
+    <link href="css/select2.min.css" rel="stylesheet" />
+
+    <script src="jquery-2.2.0.js"></script>
+    <script src="js/select2.min.js"></script>
+    <script type="text/javascript">
+
+        //$(".select1").select2();
+        loadAssetNameOrVersion();
+
+        function loadAssetNameOrVersion(displayText) {
+            displayText = displayText || "请选择";
+            $(".select1").select2({
+                placeholder: displayText,//默认显示
+                language: "zh-CN",
+                minimumInputLength: 0,//输入多少长度的值的时候执行后台请求查询
+                //选中事件（选中后显示的值）
+                formatSelection: function (object) {
+                    return object.assetName + "/" + object.productName;
+                },
+                //显示的值（加载的在下拉框的值）
+                formatResult: function (object) {
+                    return object.assetName + "/" + object.productName;
+                },
+                id: function (data) {//选中后取的值
+                    return data.productId;
+                },
+                ajax: {
+                    url: "json.json",
+                    dataType: "json",
+                    params: {
+                        contentType: 'application/json'//此处可修改contentType类型（这个地方坑了我好久，不知道还要加params包起来）
+                    },
+                    type: "post",//请求类型
+                    data: function (term, page) {//传给后台的参数，可自行构造
+                        return JSON.stringify({
+                            assetId: 877858,
+                            maxResultCount: 4,
+                            skipCount: (page - 1) * 4,
+                        });
+                    },
+                    results: function (data, page, query) {        //请求成功，接收返回值
+                        var more = (page * 4) < data.result.totalCount;
+                        return { results: data.result.items, more: more };
+                    },
+                }
+            });
+        }
+    </script>
+</body>
+</html>
