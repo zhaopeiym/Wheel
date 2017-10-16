@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+        * {
+            box-sizing: border-box;
+        }
+
+        .clearfix:after {
+            content: ' ';
+            display: table;
+            clear: both;
+        }
+
+        .clearfix {
+            *zoom: 1;
+        }
+
+        div.hi-message-box {
+            padding: 10px;
+            padding-top: 15px;
+            padding-bottom: 20px;
+            background-color: #aee0c1;
+            position: absolute;
+            min-width: 200px;
+            max-width: 500px;
+            font-size: 19px;
+            border-radius: 3px;
+            top: 200px;
+            left: 45%;
+        }
+
+            div.hi-message-box img {
+                vertical-align: bottom;
+            }
+    </style>
+</head>
+<body>
+    <input type="button" onclick="success();" value="成功消息" />
+    <input type="button" onclick="error();" value="失败消息" />
+    <input type="button" onclick="warn();" value="警告消息" />   
+
+    <script src="jquery-1.10.2.js"></script> 
+
+    <script type="text/javascript">
+        var hiMessageBox = {
+            init: function (type, messg) {
+                var hiMessageBox = '<div class="hi-message-box">\
+                                    <img class="hi-message-type" src="" />\
+                                    <span class="hi-message-messg"></span>\
+                                </div>';
+
+
+                if (!$("div.hi-message-box").length) {
+                    $("body").append(hiMessageBox);
+                }
+                var $box = $("div.hi-message-box");
+                $box.find(".hi-message-messg").text(messg);
+                switch (type) {
+                    case 0://success 成功
+                        $box.find("img.hi-message-type").prop("src", "imgs/Tick_24px.png")
+                        break;
+                    case 1://warn 警告
+                        $box.find("img.hi-message-type").prop("src", "imgs/Warning_24px.png")
+                        break;
+                    case 2://
+                        $box.find("img.hi-message-type").prop("src", "imgs/Delete_24px.png")
+                        break;
+                }
+                $("div.hi-message-box").fadeIn("slow")
+                setTimeout(function () {
+                    $("div.hi-message-box").fadeOut("slow");
+                }, 1200);
+            },
+            success: function (messg) {
+                this.init(0, messg);
+            },
+            warn: function (messg) {
+                this.init(1, messg);
+            },
+            error: function (messg) {
+                this.init(2, messg);
+            }
+        };
+    </script>
+    <script type="text/javascript">
+        function success() {
+            hiMessageBox.success("成功");
+        }
+        function error() {
+            hiMessageBox.error("失败");
+        }
+        function warn() {
+            hiMessageBox.warn("警告");
+        }
+    </script>
+
+     
+</body>
+</html>

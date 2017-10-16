@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <input type="button" name="success" id="success" value="成功" />
+    <input type="button" name="info" id="info" value="提示" />
+    <input type="button" name="warning" id="warning" value="警告" />
+    <input type="button" name="error" id="error" value="错误" />
+    <input type="button" name="clear" id="clear" value="清除" />
+
+    <link href="toastr/toastr.2.1.3.css" rel="stylesheet" />
+    <script src="jquery-2.2.0.js"></script>
+    <script src="toastr/toastr.min.2.1.3.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+
+            //参数设置，若用默认值可以省略以下面代
+            toastr.options = {
+                "positionClass": "toast-top-center",//弹出窗的位置
+                //"closeButton": false, //是否显示关闭按钮
+                //"debug": false, //是否使用debug模式
+                //"showDuration": "300",//显示的动画时间
+                //"hideDuration": "1000",//消失的动画时间
+                //"timeOut": "5000", //展现时间
+                //"extendedTimeOut": "1000",//加长展示时间
+                //"showEasing": "swing",//显示时的动画缓冲方式
+                //"hideEasing": "linear",//消失时的动画缓冲方式
+                //"showMethod": "fadeIn",//显示时的动画方式
+                //"hideMethod": "fadeOut" //消失时的动画方式
+
+                //toast-top - left  顶端左边
+                //toast- top - right    顶端右边
+                //toast- top - center  顶端中间
+                //toast- top - full - width 顶端，宽度铺满整个屏幕
+                //toast- botton - right
+                //toast-bottom - left
+                //toast-bottom - center
+                //toast-bottom - full - width
+            };
+
+            //成功提示绑定
+            $("#success").click(function () {
+                toastr.success("祝贺你成功了");
+            })
+
+            //信息提示绑定
+            $("#info").click(function () {
+                toastr.info("这是一个提示信息");
+            })
+
+            //敬告提示绑定
+            $("#warning").click(function () {
+                toastr.warning("警告你别来烦我了");
+            })
+
+            //错语提示绑定
+            $("#error").click(function () {
+                toastr.error("出现错误，请更改");
+            })
+
+            //清除窗口绑定
+            $("#clear").click(function () {
+                toastr.clear();
+            })
+
+        });
+    </script>
+</body>
+</html>
