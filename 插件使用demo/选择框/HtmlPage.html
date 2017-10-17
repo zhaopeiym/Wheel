@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <input type="radio" name="test" value="1" />
+    <input type="radio" name="test" value="2" />
+
+    
+    <link href="icheck/minimal/blue.css" rel="stylesheet" />
+    <script src="jquery-2.2.0.js"></script>
+    <script src="icheck/icheck.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('input:radio').iCheck({
+                checkboxClass: 'icheckbox_minimal-blue',
+                radioClass: 'iradio_minimal-blue',
+                increaseArea: '20%',
+            });
+        });
+    </script>
+</body>
+</html>

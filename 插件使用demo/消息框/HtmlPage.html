@@ -42,6 +42,8 @@
                 //toast-bottom - full - width
             };
 
+            toastr.options = { "positionClass": "toast-top-center" };
+
             //成功提示绑定
             $("#success").click(function () {
                 toastr.success("祝贺你成功了");
